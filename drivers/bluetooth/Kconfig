@@ -437,5 +437,3 @@ config BT_VIRTIO
 
 endmenu
 
-source "drivers/bluetooth/oplus_bt_bsa/Kconfig"
-

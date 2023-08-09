@@ -62,10 +62,6 @@
 #include "qcom_sg_ops.h"
 #include "qcom_system_heap.h"
 
-#ifdef CONFIG_OPLUS_FEATURE_MM_BOOSTPOOL
-#include "mm_boost_pool/oplus_boost_pool.h"
-#endif
-
 #if IS_ENABLED(CONFIG_QCOM_DMABUF_HEAPS_PAGE_POOL_REFILL)
 #define DYNAMIC_POOL_FILL_MARK (100 * SZ_1M)
 #define DYNAMIC_POOL_LOW_MARK_PERCENT 40UL
@@ -386,11 +382,6 @@ static void system_heap_buf_free(struct deferred_freelist_item *item,
 				if (compound_order(page) == orders[j])
 					break;
 			}
-#ifdef CONFIG_OPLUS_FEATURE_MM_BOOSTPOOL
-			if (0 == dynamic_boost_pool_free(sys_heap->boost_pool, page, j))
-				continue;
-			else
-#endif
 				dynamic_page_pool_free(sys_heap->pool_list[j], page);
 		}
 	}
@@ -474,10 +465,6 @@ static struct dma_buf *system_heap_allocate(struct dma_heap *heap,
 
 	INIT_LIST_HEAD(&pages);
 	i = 0;
-
-#ifdef CONFIG_OPLUS_FEATURE_MM_BOOSTPOOL
-	dynamic_boost_pool_alloc_pack(sys_heap->boost_pool, &size_remaining, &max_order, &pages, &i);
-#endif
 
 	while (size_remaining > 0) {
 		/*
@@ -603,10 +590,6 @@ void qcom_system_heap_create(const char *name, const char *system_alias, bool un
 	ret = system_heap_create_refill_worker(sys_heap, name);
 	if (ret)
 		goto free_pools;
-
-#ifdef CONFIG_OPLUS_FEATURE_MM_BOOSTPOOL
-	sys_heap->boost_pool = dynamic_boost_pool_create_pack();
-#endif
 
 	heap = dma_heap_add(&exp_info);
 	if (IS_ERR(heap)) {

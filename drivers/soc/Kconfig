@@ -54,28 +54,6 @@ source "drivers/soc/oplus/dfr/Kconfig"
 source "drivers/soc/oplus/boot/Kconfig"
 #endif /* OPLUS_FEATURE_BOOT */
 
-#ifdef OPLUS_FEATURE_OCH
-source "kernel/oplus_cpu/cpufreq_health/Kconfig"
-#endif /* OPLUS_FEATURE_OCH */
-
-#ifdef OPLUS_FEATURE_OMRG
-source "kernel/oplus_cpu/oplus_omrg/Kconfig"
-#endif /* OPLUS_FEATURE_OMRG */
-
-#ifdef OPLUS_FEATURE_ATD
-source "kernel/oplus_cpu/detection/Kconfig"
-#endif /* OPLUS_FEATURE_ATD */
-
-#ifdef OPLUS_FEATURE_SUGOV_POWER_EFFIENCY
-source "kernel/oplus_cpu/cpufreq_effiency/Kconfig"
-#endif /* OPLUS_FEATURE_SUGOV_POWER_EFFIENCY */
-
-#ifdef OPLUS_FEATURE_GKI_CPUFREQ_BOUNCING
-source "kernel/oplus_cpu/cpufreq_bouncing/Kconfig"
-#endif /* OPLUS_FEATURE_GKI_CPUFREQ_BOUNCING */
-
-source "kernel/oplus_cpu/uad/Kconfig"
-
 #ifdef OPLUS_FEATURE_MDMFEATURE
 source "drivers/soc/oplus/mdmfeature/Kconfig"
 #endif /*OPLUS_FEATURE_MDMFEATURE*/
@@ -84,9 +62,6 @@ source "drivers/soc/oplus/mdmfeature/Kconfig"
 source "drivers/soc/oplus/mdmrst/Kconfig"
 #endif /*OPLUS_FEATURE_MODEM_MINIDUMP*/
 
-#ifdef OPLUS_FEATURE_MIDAS
-source "drivers/soc/oplus/midas/Kconfig"
-#endif /*OPLUS_FEATURE_MIDAS*/
 endmenu
 
 #ifdef OPLUS_FEATURE_TP_BASIC

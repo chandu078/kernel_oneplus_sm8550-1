@@ -37,10 +37,6 @@ source "drivers/soc/oplus/dfr/mtk/oplus_pmic_monitor_mtk/Kconfig"
 source "drivers/soc/oplus/dfr/common/shutdown_detect/Kconfig"
 #endif /* OPLUS_FEATURE_SHUTDOWN_DETECT */
 
-#ifdef OPLUS_FEATURE_HUNG_TASK_ENHANCE
-source "drivers/soc/oplus/dfr/common/hung_task_enhance/Kconfig"
-#endif /* OPLUS_FEATURE_HUNG_TASK_ENHANCE */
-
 #ifdef OPLUS_FEATURE_SAUPWK
 source "drivers/soc/oplus/dfr/common/oplus_saupwk/Kconfig"
 #endif /* OPLUS_FEATURE_SAUPWK */
@@ -64,10 +60,6 @@ source "drivers/soc/oplus/dfr/common/combkey_monitor/Kconfig"
 #ifdef CONFIG_OPLUS_FEATURE_FAULT_INJECT
 source "drivers/soc/oplus/dfr/fault_inject/Kconfig"
 #endif /*CONFIG_OPLUS_FEATURE_FAULT_INJECT*/
-
-#ifdef CONFIG_OPLUS_FEATURE_FDLEAK_CHECK
-source "drivers/soc/oplus/dfr/common/oplus_fdleak/Kconfig"
-#endif /*CONFIG_OPLUS_FEATURE_FDLEAK_CHECK*/
 
 #ifdef OPLUS_FEATURE_LAST_BOOT_REASON
 source "drivers/soc/oplus/dfr/common/last_boot_reason/Kconfig"

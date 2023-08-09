@@ -47,10 +47,6 @@ obj-$(CONFIG_OPLUS_FEATURE_MIDAS_GKI) += oplus/midas/
 
 obj-y                           += oplus/sensor/
 
-#ifdef CONFIG_OPLUS_SENSOR_CONSUMER_IR
-obj-$(CONFIG_OPLUS_SENSOR_CONSUMER_IR_CORE) += oplus/oplus_consumer_ir/
-#endif /* CONFIG_OPLUS_SENSOR_CONSUMER_IR */
-
 #ifdef OPLUS_FEATURE_DFT
 obj-y += oplus/dft/
 #endif /* ifdef OPLUS_FEATURE_DFT */

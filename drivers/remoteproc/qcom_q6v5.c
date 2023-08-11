@@ -32,10 +32,6 @@
 #include "remoteproc_internal.h"
 #define REMOTEPROC_ADSP "remoteproc-adsp"
 
-#if IS_ENABLED(CONFIG_OPLUS_FEATURE_MM_FEEDBACK)
-#include <soc/oplus/system/oplus_mm_kevent_fb.h>
-#endif /* CONFIG_OPLUS_FEATURE_MM_FEEDBACK */
-
 #define Q6V5_PANIC_DELAY_MS	200
 
 #ifdef OPLUS_FEATURE_MODEM_MINIDUMP
@@ -319,18 +315,6 @@ static irqreturn_t q6v5_wdog_interrupt(int irq, void *data)
 	else
 		dev_err(q6v5->dev, "watchdog without message\n");
 
-	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_MM_FEEDBACK)
-	if (strstr(q6v5->rproc->name, REMOTEPROC_ADSP)) {
-		if (!IS_ERR(msg) && len > 0 && msg[0]) {
-			mm_fb_audio_kevent_named(OPLUS_AUDIO_EVENTID_ADSP_CRASH, \
-				MM_FB_KEY_RATELIMIT_5MIN, "FieldData@@%s$$detailData@@audio$$module@@adsp", msg);
-		} else {
-			mm_fb_audio_kevent_named(OPLUS_AUDIO_EVENTID_ADSP_CRASH, \
-				MM_FB_KEY_RATELIMIT_5MIN, "FieldData@@watchdog without message$$detailData@@audio$$module@@adsp");
-		}
-	}
-	#endif /* CONFIG_OPLUS_FEATURE_MM_FEEDBACK */
-
 	#ifdef OPLUS_FEATURE_MODEM_MINIDUMP
 	if (!IS_ERR(msg) && len > 0 && msg[0]) {
 		strlcpy(reason, msg, min(len, (size_t)MAX_SSR_REASON_LEN));
@@ -402,18 +386,6 @@ static irqreturn_t q6v5_fatal_interrupt(int irq, void *data)
 		dev_err(q6v5->dev, "fatal error received: %s\n", msg);
 	else
 		dev_err(q6v5->dev, "fatal error without message\n");
-
-	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_MM_FEEDBACK)
-	if (strstr(q6v5->rproc->name, REMOTEPROC_ADSP)) {
-		if (!IS_ERR(msg) && len > 0 && msg[0]) {
-			mm_fb_audio_kevent_named(OPLUS_AUDIO_EVENTID_ADSP_CRASH, \
-				MM_FB_KEY_RATELIMIT_5MIN, "FieldData@@%s$$detailData@@audio$$module@@adsp", msg);
-		} else {
-			mm_fb_audio_kevent_named(OPLUS_AUDIO_EVENTID_ADSP_CRASH, \
-				MM_FB_KEY_RATELIMIT_5MIN, "FieldData@@fatal error without message$$detailData@@audio$$module@@adsp");
-		}
-	}
-	#endif /* CONFIG_OPLUS_FEATURE_MM_FEEDBACK */
 
 	#ifdef OPLUS_FEATURE_MODEM_MINIDUMP
 	if (!IS_ERR(msg) && len > 0 && msg[0]) {

@@ -33,10 +33,6 @@ obj-y				+= xilinx/
 obj-$(CONFIG_OPLUS_SYSTEM_KERNEL)	+= oplus/system/
 #endif /* OPLUS_BUG_STABILITY */
 
-#ifdef OPLUS_FEATURE_MM_FEEDBACK
-obj-$(CONFIG_OPLUS_FEATURE_MM_FEEDBACK)	+= oplus/multimedia/
-#endif /* OPLUS_FEATURE_MM_FEEDBACK */
-
 #ifdef OPLUS_FEATURE_TP_BASIC
 obj-$(CONFIG_OPLUS_DEVICE_IFNO)  +=  oplus/device_info/
 #endif /* OPLUS_FEATURE_TP_BASIC */
